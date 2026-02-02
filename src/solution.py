@@ -1,5 +1,5 @@
-## Student Name:
-## Student ID: 
+## Student Name: Uzma Alam
+## Student ID: 219159771
 
 """
 Stub file for the is allocation feasible exercise.
@@ -28,6 +28,22 @@ def is_allocation_feasible(
     Returns:
         True if the allocation is feasible, False otherwise.
 
+
     """
     # TODO: Implement this function
-    raise NotImplementedError("suggest_slots function has not been implemented yet")
+    #raise NotImplementedError("suggest_slots function has not been implemented yet")
+    # Create a copy of the resources to track remaining capacities
+    remaining_resources = resources.copy()
+    # Iterate through the requests
+    for request in requests:
+        # Check each resource 
+        for resource, amount in request.items():
+            # If the resource is not available or the requested amount exceeds the remaining capacity
+            if resource not in remaining_resources or amount > remaining_resources[resource]:
+                return False
+            # Substract the requested amount from the remaining capacity
+            remaining_resources[resource] -= amount
+    
+    return True
+
+
