@@ -1,10 +1,20 @@
 ## Student Name:
 ## Student ID: 
 
-Prompt 1: "Copy paste your question"
-LLM Response 1: "Copy paste LLMs response"
+Prompt 1: "Implement the function is_allocation_feasible to determine whether a set of resource requests can be satisfied given limited capacities."
+LLM Response 1: "The LLM explained that the NotImplementedError must be removed and provided a correct implementation that:
+
+Copies the available resources to avoid mutation
+
+Iterates through each request and each resource
+
+Checks whether the resource exists and has enough remaining capacity
+
+Deducts the allocated amount
+
+Returns True only if all requests can be satisfied"
 
 --------------------------------------------------
-Prompt 2: "Copy paste your question"
-LLM Response 2: "Copy paste LLMs response"
+Prompt 2: "Is my implementation of is_allocation_feasible correct after removing the NotImplementedError?"
+LLM Response 2: "The LLM confirmed that the implementation is correct and meets the lab requirements. It correctly enforces allocation constraints, prevents over-allocation, and handles cumulative requests properly. The response also noted that an optional check for negative request amounts could be added if specified in the lab handout, but the current solution is valid as-is."
 --------------------------------------------------
