@@ -1,5 +1,5 @@
-## Student Name:
-## Student ID: 
+## Student Name: Uzma Alam
+## Student ID: 219159771
 
 """
 Public test suite for the meeting slot suggestion exercise.
@@ -46,3 +46,28 @@ def test_non_dict_request_raises():
         is_allocation_feasible(resources, requests)
 
 """TODO: Add at least 5 additional test cases to test your implementation."""
+def test_exact_capacity_match():
+    # Exact Capacity Match
+    resources = {'cpu': 10, 'mem': 20}
+    requests = [{'cpu': 5, 'mem': 10}, {'cpu': 5, 'mem': 10}]
+    assert is_allocation_feasible(resources, requests) is True
+def test_zero_capacity_resource():
+    # Zero Capacity Resource
+    resources = {'cpu': 0, 'mem': 10}
+    requests = [{'cpu': 0, 'mem': 5}, {'cpu': 0, 'mem': 5}]
+    assert is_allocation_feasible(resources, requests) is True
+def test_exceeding_capacity_by_one_unit():
+    # Exceeding Capacity by One Unit
+    resources = {'cpu': 10}
+    requests = [{'cpu': 5}, {'cpu': 6}]
+    assert is_allocation_feasible(resources, requests) is False
+def test_no_requests():
+    # No Requests
+    resources = {'cpu': 10, 'mem': 20}
+    requests = []
+    assert is_allocation_feasible(resources, requests) is True
+def test_multiple_resources_all_feasible():
+    # Multiple Resources All Feasible
+    resources = {'cpu': 15, 'mem': 30, 'disk': 50}
+    requests = [{'cpu': 5, 'mem': 10, 'disk': 20}, {'cpu': 7, 'mem': 15, 'disk': 25}, {'cpu': 3, 'mem': 5, 'disk': 5}]
+    assert is_allocation_feasible(resources, requests) is True
