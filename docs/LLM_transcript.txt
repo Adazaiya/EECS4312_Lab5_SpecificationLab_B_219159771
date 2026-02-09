@@ -1,5 +1,5 @@
-## Student Name:
-## Student ID: 
+## Student Name: Uzma Alam
+## Student ID: 219159771
 
 Prompt 1: "Implement the function is_allocation_feasible to determine whether a set of resource requests can be satisfied given limited capacities."
 LLM Response 1: "The LLM explained that the NotImplementedError must be removed and provided a correct implementation that:
