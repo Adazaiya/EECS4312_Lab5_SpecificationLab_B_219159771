@@ -55,7 +55,10 @@ def test_zero_capacity_resource():
     # Zero Capacity Resource
     resources = {'cpu': 0, 'mem': 10}
     requests = [{'cpu': 0, 'mem': 5}, {'cpu': 0, 'mem': 5}]
-    assert is_allocation_feasible(resources, requests) is True
+    # With the new requirement, all resources are fully consumed → should be False
+    assert is_allocation_feasible(resources, requests) is False
+
+
 def test_exceeding_capacity_by_one_unit():
     # Exceeding Capacity by One Unit
     resources = {'cpu': 10}
@@ -70,4 +73,58 @@ def test_multiple_resources_all_feasible():
     # Multiple Resources All Feasible
     resources = {'cpu': 15, 'mem': 30, 'disk': 50}
     requests = [{'cpu': 5, 'mem': 10, 'disk': 20}, {'cpu': 7, 'mem': 15, 'disk': 25}, {'cpu': 3, 'mem': 5, 'disk': 5}]
+    assert is_allocation_feasible(resources, requests) is True
+
+# new test cases 
+def test_exact_capacity_match():
+    # Exact Capacity Match
+    resources = {'cpu': 10, 'mem': 20}
+    requests = [{'cpu': 5, 'mem': 10}, {'cpu': 5, 'mem': 10}]
+    assert is_allocation_feasible(resources, requests) is False  # now False due to new rule
+
+
+def test_exceeding_capacity_by_one_unit():
+    # Exceeding Capacity by One Unit
+    resources = {'cpu': 10}
+    requests = [{'cpu': 5}, {'cpu': 6}]
+    assert is_allocation_feasible(resources, requests) is False
+def test_no_requests():
+    # No Requests
+    resources = {'cpu': 10, 'mem': 20}
+    requests = []
+    assert is_allocation_feasible(resources, requests) is True  # all resources unallocated
+
+def test_multiple_resources_all_feasible():
+    # Multiple Resources All Feasible
+    resources = {'cpu': 15, 'mem': 30, 'disk': 50}
+    requests = [{'cpu': 5, 'mem': 10, 'disk': 20}, {'cpu': 7, 'mem': 15, 'disk': 25}]
+    assert is_allocation_feasible(resources, requests) is True
+def test_all_requests_exceed_capacity():
+    # All Requests Exceed Capacity
+    resources = {'cpu': 10, 'mem': 20}
+    requests = [{'cpu': 11, 'mem': 21}, {'cpu': 12, 'mem': 22}]
+    assert is_allocation_feasible(resources, requests) is False
+
+def test_one_request_exceeds_capacity():
+    # One Request Exceeds Capacity
+    resources = {'cpu': 10, 'mem': 20}
+    requests = [{'cpu': 5, 'mem': 10}, {'cpu': 11, 'mem': 15}]
+    assert is_allocation_feasible(resources, requests) is False
+
+def test_request_with_zero_amount():
+    # Request with Zero Amount
+    resources = {'cpu': 10, 'mem': 20}
+    requests = [{'cpu': 0, 'mem': 0}, {'cpu': 5, 'mem': 10}]
+    assert is_allocation_feasible(resources, requests) is True
+def test_all_requests_exactly_fill_capacity():
+    # All Requests Exactly Fill Capacity
+    resources = {'cpu': 10, 'mem': 20}
+    requests = [{'cpu': 5, 'mem': 10}, {'cpu': 5, 'mem': 10}]
+    assert is_allocation_feasible(resources, requests) is False  # new requirement
+
+
+def test_partial_remaining_capacity():
+    # Partial Remaining Capacity
+    resources = {'cpu': 10, 'mem': 20}
+    requests = [{'cpu': 5, 'mem': 10}, {'cpu': 3, 'mem': 5}]
     assert is_allocation_feasible(resources, requests) is True

@@ -45,8 +45,8 @@ def is_allocation_feasible(
             remaining_resources[resource] -= amount
     
     # new requirment : atleast one request must remain unallocated
-    if all(capacity == 0 for capacity in remaining_resources.values()):
-        return False
+    return any(capacity > 0 for capacity in remaining_resources.values())
+
     
     return True
 
