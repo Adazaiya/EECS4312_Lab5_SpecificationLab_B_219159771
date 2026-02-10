@@ -17,4 +17,6 @@ Returns True only if all requests can be satisfied"
 --------------------------------------------------
 Prompt 2: "Is my implementation of is_allocation_feasible correct after removing the NotImplementedError?"
 LLM Response 2: "The LLM confirmed that the implementation is correct and meets the lab requirements. It correctly enforces allocation constraints, prevents over-allocation, and handles cumulative requests properly. The response also noted that an optional check for negative request amounts could be added if specified in the lab handout, but the current solution is valid as-is."
+
+Prompt 3: "Generate test cases for the new requirement" 
 --------------------------------------------------
